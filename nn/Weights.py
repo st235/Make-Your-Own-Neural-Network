@@ -1,24 +1,24 @@
 import numpy as np
 
+from nn.HeWeightsInitialiser import HeWeightsInitialiser
 from nn.Module import Module
+from nn.WeightsInitialiser import WeightsInitialiser
+
 
 class Weights(Module):
     def __init__(self,
                  in_features: int,
-                 out_features: int):
+                 out_features: int,
+                 initialiser: WeightsInitialiser=HeWeightsInitialiser()):
         super().__init__()
 
         self.__in_features = in_features
         self.__out_features = out_features
 
-        # Randomly initialised weights matrix of size in_features x out_features.
-        # Uses He initialisation by default.
-        self.__weights = np.random.normal(
-            loc=0.0,
-            scale=pow(2.0 / (self.__in_features + self.__out_features), 0.5),
-            size=(self.__in_features, self.__out_features)
+        self.__weights = initialiser.initialise(
+            in_features=self.__in_features,
+            out_features=self.__out_features,
         )
-
         self.__bias = np.zeros((1, self.__out_features))
 
     def forward(self, x: np.ndarray) -> np.ndarray:

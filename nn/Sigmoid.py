@@ -2,6 +2,7 @@ import numpy as np
 
 from nn.Module import Module
 
+
 class Sigmoid(Module):
     def __init__(self):
         super().__init__()

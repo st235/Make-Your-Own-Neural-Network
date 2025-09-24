@@ -2,6 +2,7 @@ import numpy as np
 
 from nn.Module import Module
 
+
 class Softmax(Module):
     def __init__(self):
         super().__init__()

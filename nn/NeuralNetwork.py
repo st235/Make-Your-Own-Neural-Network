@@ -1,28 +1,31 @@
-import numpy as np
-
 from typing import List, Callable
 
+import numpy as np
+
+from nn.HeWeightsInitialiser import HeWeightsInitialiser
 from nn.Module import Module
-from nn.Weights import Weights
-from nn.Sigmoid import Sigmoid
-from nn.Softmax import Softmax
 from nn.ReLU import ReLU
+from nn.Softmax import Softmax
+from nn.Weights import Weights
+from nn.WeightsInitialiser import WeightsInitialiser
+
 
 class NeuralNetwork:
     def __init__(self,
                  in_features: int,
                  out_features: int,
-                 hidden_layers: tuple[int] = (),
-                 hidden_layer_activation: Callable[[], Module] = ReLU):
+                 hidden_layers: tuple[int]=(),
+                 hidden_layer_activation: Callable[[], Module]=ReLU,
+                 weights_initialiser: WeightsInitialiser=HeWeightsInitialiser()):
         self.__layers: List[Module] = []
 
         current_layer = in_features
         for hidden_layer in hidden_layers:
-            self.__layers.append(Weights(in_features=current_layer, out_features=hidden_layer))
+            self.__layers.append(Weights(in_features=current_layer, out_features=hidden_layer, initialiser=weights_initialiser))
             self.__layers.append(hidden_layer_activation())
             current_layer = hidden_layer
 
-        self.__layers.append(Weights(in_features=current_layer, out_features=out_features))
+        self.__layers.append(Weights(in_features=current_layer, out_features=out_features, initialiser=weights_initialiser))
         self.__layers.append(Softmax())
 
     def forward(self, x: np.ndarray) -> np.ndarray:

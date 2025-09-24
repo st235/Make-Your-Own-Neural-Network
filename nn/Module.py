@@ -3,6 +3,7 @@ from typing import Optional
 
 import numpy as np
 
+
 class Module(ABC):
     """Abstract base class for a neural network building block.
     """
