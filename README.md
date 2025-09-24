@@ -57,7 +57,7 @@ It was also tested on custom handwritten digits, where accuracy was noticeably l
 
 This difference likely comes from variations between the custom images and the original dataset.
 
-> [!INFO]
+> [!TIP]
 > More details can be found in the [`Demo` notebook](./Demo.ipynb).
 
 ## Further Work
