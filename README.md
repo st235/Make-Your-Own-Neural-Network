@@ -2,9 +2,9 @@
 
 This repository contains a from-scratch implementation of a simple neural network.
 
-The design is inspired by Tariq Rashid’s book *Make Your Own Neural Network*, but it extends beyond the material covered there.
-
 <img src="./resources/book.png" width="150" />
+
+The design is inspired by Tariq Rashid’s book *Make Your Own Neural Network*, but it extends beyond the material covered there.
 
 ## Implementation
 
@@ -57,5 +57,15 @@ It was also tested on custom handwritten digits, where accuracy was noticeably l
 
 This difference likely comes from variations between the custom images and the original dataset.
 
-> \[!INFO]
+> [!INFO]
 > More details can be found in the [`Demo` notebook](./Demo.ipynb).
+
+## Further Work
+
+The implemented model successfully learns patterns and produces solid results, even with a relatively simple dataset.
+
+Some possible directions for further exploration include:
+
+* Addressing vanishing and exploding gradients
+  * Applying gradient clipping
+  * Using gradient scaling
